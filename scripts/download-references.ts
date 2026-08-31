@@ -11,30 +11,54 @@ interface ReferenceSpec {
 }
 
 const upstreamCommit = "d2c2376c17dd503341feb1e816d88bdfa5dc7625"
-const upstreamRawRoot = `https://raw.githubusercontent.com/Devangvk/Op-Amp-Circuits/${upstreamCommit}/Op%20Amp%20Circuits/Non-inverting%20Amplifier`
-const fixtureDirectory = "op-amp-circuits/non-inverting-amplifier"
+const upstreamRawRoot = `https://raw.githubusercontent.com/Devangvk/Op-Amp-Circuits/${upstreamCommit}/Op%20Amp%20Circuits`
+const nonInvertingUpstreamRoot = `${upstreamRawRoot}/Non-inverting%20Amplifier`
+const nonInvertingFixtureDirectory = "op-amp-circuits/non-inverting-amplifier"
+const integratorUpstreamRoot = `${upstreamRawRoot}/Integrator`
+const integratorFixtureDirectory = "op-amp-circuits/integrator"
 
 const references: readonly ReferenceSpec[] = [
   {
     byteLength: 24_064,
-    outputPath: `${fixtureDirectory}/NONINVAMP.DSN`,
+    outputPath: `${nonInvertingFixtureDirectory}/NONINVAMP.DSN`,
     sha256: "d25e4388e051da1418733ef837badb4b8ad98f0b407225df84b0379a9362b6a8",
     source: `Devangvk/Op-Amp-Circuits@${upstreamCommit} Non-inverting Amplifier design`,
-    url: `${upstreamRawRoot}/NONINVAMP.DSN`,
+    url: `${nonInvertingUpstreamRoot}/NONINVAMP.DSN`,
   },
   {
     byteLength: 17_836,
-    outputPath: `${fixtureDirectory}/noninvSch.PNG`,
+    outputPath: `${nonInvertingFixtureDirectory}/noninvSch.PNG`,
     sha256: "f30b2c937846f7d96ad0ade0a48f9533bffab3890e1a9cb778c3a7a0a848560e",
     source: `Devangvk/Op-Amp-Circuits@${upstreamCommit} published schematic preview`,
-    url: `${upstreamRawRoot}/noninvSch.PNG`,
+    url: `${nonInvertingUpstreamRoot}/noninvSch.PNG`,
   },
   {
     byteLength: 2_023,
-    outputPath: `${fixtureDirectory}/noninvamp.opj`,
+    outputPath: `${nonInvertingFixtureDirectory}/noninvamp.opj`,
     sha256: "516f4eeb18a54124c2a4c979f457ec9d507ca3b3ba59e5bbdd12babf871bb416",
     source: `Devangvk/Op-Amp-Circuits@${upstreamCommit} Non-inverting Amplifier project`,
-    url: `${upstreamRawRoot}/noninvamp.opj`,
+    url: `${nonInvertingUpstreamRoot}/noninvamp.opj`,
+  },
+  {
+    byteLength: 28_672,
+    outputPath: `${integratorFixtureDirectory}/INTEGRATOR.DSN`,
+    sha256: "654fde997ac84a3acffdbe6cb78fd905a32bffe8b97f463744df39abfad05bf0",
+    source: `Devangvk/Op-Amp-Circuits@${upstreamCommit} Integrator design`,
+    url: `${integratorUpstreamRoot}/INTEGRATOR.DSN`,
+  },
+  {
+    byteLength: 22_651,
+    outputPath: `${integratorFixtureDirectory}/intSch.PNG`,
+    sha256: "c42313c2c3da29c6ea2e47f8c4f5278712158630c4294018ff33c459c9744080",
+    source: `Devangvk/Op-Amp-Circuits@${upstreamCommit} published Integrator schematic preview`,
+    url: `${integratorUpstreamRoot}/intSch.PNG`,
+  },
+  {
+    byteLength: 2_418,
+    outputPath: `${integratorFixtureDirectory}/Integrator.opj`,
+    sha256: "9fbdd1e0e2cd763a6221c57d6c349c2a4932694211e53bfd0eb84d255c951e67",
+    source: `Devangvk/Op-Amp-Circuits@${upstreamCommit} Integrator project`,
+    url: `${integratorUpstreamRoot}/Integrator.opj`,
   },
 ]
 

@@ -28,6 +28,11 @@ const displayPropertyBaselineOffset = displayPropertyFontSize * 0.8
 const biasDiagnosticFontSize = 7
 const groundEndpointSnapThreshold = 10
 const groundSymbolNameAllowlist = new Set(["0", "GND", "GROUND", "COMMON"])
+const circularSourcePackageNames = new Set(["VDC.Normal", "VSIN.Normal"])
+const opAmpPackageLabels = new Map([
+  ["TL082.Normal", "TL082"],
+  ["TL084.Normal", "TL084"],
+])
 const minimumPointSpan = 8
 const defaultBounds: OrcadSchematicPreviewBounds = {
   minX: 0,
@@ -175,6 +180,11 @@ function renderComponentSymbol(
         return renderResistor(...pointPair)
       }
       return renderGenericComponent(component, "invalid-t0x10-geometry")
+    case "C.Normal":
+      if (pointPair) {
+        return renderCapacitor(...pointPair)
+      }
+      return renderGenericComponent(component, "invalid-t0x10-geometry")
     case "VDC.Normal":
       if (pointPair) {
         return renderDcSource(...pointPair)
@@ -185,7 +195,8 @@ function renderComponentSymbol(
         return renderSineSource(...pointPair)
       }
       return renderGenericComponent(component, "invalid-t0x10-geometry")
-    case "TL082.Normal": {
+    case "TL082.Normal":
+    case "TL084.Normal": {
       const geometry = points ? readOpAmpGeometry(points) : null
       return geometry
         ? renderOpAmp(geometry)
@@ -293,6 +304,49 @@ function renderResistor(
   return [
     '      <g data-symbol-family="resistor" data-render-mode="heuristic" data-geometry-source="t0x10-record-positions" data-symbol-inference="package-name-allowlist">',
     `        <path d="${pointsToPath(pathPoints)}"/>`,
+    "      </g>",
+  ]
+}
+
+function renderCapacitor(
+  first: OrcadSchematicPreviewPoint,
+  second: OrcadSchematicPreviewPoint,
+): string[] {
+  const axis = unitVector(first, second)
+  const normal = { x: -axis.y, y: axis.x }
+  const center = midpoint(first, second)
+  const span = pointDistance(first, second)
+  const halfGap = Math.min(2.5, span * 0.1)
+  const halfPlateLength = Math.min(8, span * 0.27)
+  const firstPlateCenter = translatePoint(center, axis, -halfGap)
+  const secondPlateCenter = translatePoint(center, axis, halfGap)
+  const firstPlateStart = translatePoint(
+    firstPlateCenter,
+    normal,
+    -halfPlateLength,
+  )
+  const firstPlateEnd = translatePoint(
+    firstPlateCenter,
+    normal,
+    halfPlateLength,
+  )
+  const secondPlateStart = translatePoint(
+    secondPlateCenter,
+    normal,
+    -halfPlateLength,
+  )
+  const secondPlateEnd = translatePoint(
+    secondPlateCenter,
+    normal,
+    halfPlateLength,
+  )
+
+  return [
+    '      <g data-symbol-family="capacitor" data-render-mode="heuristic" data-geometry-source="t0x10-record-positions" data-symbol-inference="package-name-allowlist">',
+    `        <line x1="${formatNumber(first.x)}" y1="${formatNumber(first.y)}" x2="${formatNumber(firstPlateCenter.x)}" y2="${formatNumber(firstPlateCenter.y)}"/>`,
+    `        <line x1="${formatNumber(firstPlateStart.x)}" y1="${formatNumber(firstPlateStart.y)}" x2="${formatNumber(firstPlateEnd.x)}" y2="${formatNumber(firstPlateEnd.y)}"/>`,
+    `        <line x1="${formatNumber(secondPlateStart.x)}" y1="${formatNumber(secondPlateStart.y)}" x2="${formatNumber(secondPlateEnd.x)}" y2="${formatNumber(secondPlateEnd.y)}"/>`,
+    `        <line x1="${formatNumber(secondPlateCenter.x)}" y1="${formatNumber(secondPlateCenter.y)}" x2="${formatNumber(second.x)}" y2="${formatNumber(second.y)}"/>`,
     "      </g>",
   ]
 }
@@ -503,10 +557,11 @@ function renderComponentText(
   let renderedValue = false
   let biasDiagnosticIndex = 0
 
-  if (component.packageName === "TL082.Normal") {
+  const opAmpPackageLabel = opAmpPackageLabels.get(component.packageName)
+  if (opAmpPackageLabel) {
     const position = opAmpPackageLabelAnchor(component)
     lines.push(
-      `      <text data-property="Package Name" data-text-source="package-name" data-text-format-inference="exact-package-base-label" data-placement-inference="op-amp-exterior-label" x="${formatNumber(position.x)}" y="${formatNumber(position.y)}" fill="${symbolColor}" stroke="none" font-family="Arial, sans-serif" font-size="9">TL082</text>`,
+      `      <text data-property="Package Name" data-text-source="package-name" data-text-format-inference="exact-package-base-label" data-placement-inference="op-amp-exterior-label" x="${formatNumber(position.x)}" y="${formatNumber(position.y)}" fill="${symbolColor}" stroke="none" font-family="Arial, sans-serif" font-size="9">${opAmpPackageLabel}</text>`,
     )
   }
 
@@ -619,6 +674,26 @@ function biasDiagnosticPosition(
   index: number,
 ): OrcadSchematicPreviewPoint {
   const points = readCanonicalGeometryPoints(component)
+  const sourceTerminals = readUsableTwoPointGeometry(points)
+  if (
+    sourceTerminals &&
+    circularSourcePackageNames.has(component.packageName)
+  ) {
+    const [first, second] = sourceTerminals
+    const center = midpoint(first, second)
+    const radius = Math.min(15, pointDistance(first, second) * 0.3)
+    const lineOffset = index * (biasDiagnosticFontSize + 2)
+    if (Math.abs(second.y - first.y) >= Math.abs(second.x - first.x)) {
+      return {
+        x: center.x + radius + 8,
+        y: center.y + biasDiagnosticFontSize * 0.5 + lineOffset,
+      }
+    }
+    return {
+      x: center.x + 8,
+      y: center.y + radius + biasDiagnosticFontSize + lineOffset,
+    }
+  }
   if (points && points.length > 0) {
     let maxX = Number.NEGATIVE_INFINITY
     let maxY = Number.NEGATIVE_INFINITY
@@ -851,8 +926,14 @@ function includeComponentBounds(
   let renderedReference = false
   let renderedValue = false
   let biasDiagnosticIndex = 0
-  if (component.packageName === "TL082.Normal") {
-    includeTextBounds(bounds, opAmpPackageLabelAnchor(component), "TL082", 9)
+  const opAmpPackageLabel = opAmpPackageLabels.get(component.packageName)
+  if (opAmpPackageLabel) {
+    includeTextBounds(
+      bounds,
+      opAmpPackageLabelAnchor(component),
+      opAmpPackageLabel,
+      9,
+    )
   }
   for (const property of component.displayProperties) {
     const renderedProperty = resolveDisplayPropertyText(component, property, {

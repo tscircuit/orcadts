@@ -228,6 +228,10 @@ const resistorPoints = [
   { x: -20, y: 0 },
   { x: 20, y: 0 },
 ] as const
+const capacitorPoints = [
+  { x: -20, y: 80 },
+  { x: 20, y: 80 },
+] as const
 const sourcePoints = [
   { x: 100, y: -20 },
   { x: 100, y: 20 },
@@ -240,7 +244,7 @@ const opAmpPoints = [
   { x: 360, y: 30 },
 ] as const
 
-test("reconstructs only the four exact package-name allowlist families", () => {
+test("reconstructs only the six exact package-name allowlist entries", () => {
   const svg = serializePage(
     makePage([
       makeComponent({
@@ -248,6 +252,12 @@ test("reconstructs only the four exact package-name allowlist families", () => {
         points: resistorPoints,
         position: { x: 0, y: 0 },
         reference: "R1",
+      }),
+      makeComponent({
+        packageName: "C.Normal",
+        points: capacitorPoints,
+        position: { x: 0, y: 80 },
+        reference: "C1",
       }),
       makeComponent({
         packageName: "VDC.Normal",
@@ -277,10 +287,20 @@ test("reconstructs only the four exact package-name allowlist families", () => {
         position: { x: 280, y: 10 },
         reference: "U1",
       }),
+      makeComponent({
+        packageName: "TL084.Normal",
+        points: opAmpPoints.map((point) => ({
+          x: point.x + 100,
+          y: point.y,
+        })),
+        position: { x: 380, y: 10 },
+        reference: "U2",
+      }),
     ]),
   )
 
   expect(svg).toContain('data-symbol-family="resistor"')
+  expect(svg).toContain('data-symbol-family="capacitor"')
   expect(svg).toContain('data-symbol-family="dc-source"')
   expect(svg).toContain('data-symbol-family="sine-source"')
   expect(svg).toContain('data-symbol-family="op-amp"')
@@ -290,9 +310,9 @@ test("reconstructs only the four exact package-name allowlist families", () => {
   expect(svg).toContain('data-symbol-inference="package-name-allowlist"')
   const reconstructionTags =
     svg.match(
-      /<g data-symbol-family="(?:resistor|dc-source|sine-source|op-amp)"[^>]+>/g,
+      /<g data-symbol-family="(?:resistor|capacitor|dc-source|sine-source|op-amp)"[^>]+>/g,
     ) ?? []
-  expect(reconstructionTags).toHaveLength(4)
+  expect(reconstructionTags).toHaveLength(6)
   for (const tag of reconstructionTags) {
     expect(tag).toContain('data-render-mode="heuristic"')
     expect(tag).toContain('data-geometry-source="t0x10-record-positions"')
@@ -312,7 +332,33 @@ test("reconstructs only the four exact package-name allowlist families", () => {
     'data-text-source="package-name" data-text-format-inference="exact-package-base-label" data-placement-inference="op-amp-exterior-label"',
   )
   expect(svg).toContain(">TL082</text>")
+  expect(svg).toContain(">TL084</text>")
   expect(svg).not.toMatch(/\sdata-(?:pin|terminal|net-id)(?:=|-)/i)
+})
+
+test("capacitor plates follow horizontal and vertical terminal axes", () => {
+  const svg = serializePage(
+    makePage([
+      makeComponent({
+        packageName: "C.Normal",
+        points: capacitorPoints,
+        reference: "C1",
+      }),
+      makeComponent({
+        packageName: "C.Normal",
+        points: [
+          { x: 100, y: -20 },
+          { x: 100, y: 20 },
+        ],
+        position: { x: 100, y: 0 },
+        reference: "C2",
+      }),
+    ]),
+  )
+
+  expect(svg.match(/data-symbol-family="capacitor"/g)).toHaveLength(2)
+  expect(svg).toContain('<line x1="-2.5" y1="72" x2="-2.5" y2="88"/>')
+  expect(svg).toContain('<line x1="108" y1="-2.5" x2="92" y2="-2.5"/>')
 })
 
 test("near-match package names use the generic placement fallback", () => {
@@ -341,31 +387,36 @@ test("near-match package names use the generic placement fallback", () => {
   ).toHaveLength(2)
 })
 
-test("isolated TL082 geometry and inferred labels fit inside the viewBox", () => {
-  const svg = serializePage(
-    makePage([
-      makeComponent({
-        packageName: "TL082.Normal",
-        points: opAmpPoints,
-        position: { x: 280, y: 10 },
-        reference: "U1",
-      }),
-    ]),
-  )
-  const [minX, minY, width, height] = readViewBox(svg)
-  const maxX = minX + width
-  const maxY = minY + height
+for (const [packageName, label] of [
+  ["TL082.Normal", "TL082"],
+  ["TL084.Normal", "TL084"],
+] as const) {
+  test(`isolated ${label} geometry and inferred labels fit inside the viewBox`, () => {
+    const svg = serializePage(
+      makePage([
+        makeComponent({
+          packageName,
+          points: opAmpPoints,
+          position: { x: 280, y: 10 },
+          reference: "U1",
+        }),
+      ]),
+    )
+    const [minX, minY, width, height] = readViewBox(svg)
+    const maxX = minX + width
+    const maxY = minY + height
 
-  for (const point of opAmpPoints) {
-    expect(point.x).toBeGreaterThanOrEqual(minX)
-    expect(point.x).toBeLessThanOrEqual(maxX)
-    expect(point.y).toBeGreaterThanOrEqual(minY)
-    expect(point.y).toBeLessThanOrEqual(maxY)
-  }
-  expect(minY).toBeLessThanOrEqual(-17)
-  expect(maxX).toBeGreaterThanOrEqual(360)
-  expect(svg).toContain(">TL082</text>")
-})
+    for (const point of opAmpPoints) {
+      expect(point.x).toBeGreaterThanOrEqual(minX)
+      expect(point.x).toBeLessThanOrEqual(maxX)
+      expect(point.y).toBeGreaterThanOrEqual(minY)
+      expect(point.y).toBeLessThanOrEqual(maxY)
+    }
+    expect(minY).toBeLessThanOrEqual(-17)
+    expect(maxX).toBeGreaterThanOrEqual(360)
+    expect(svg).toContain(`>${label}</text>`)
+  })
+}
 
 test("opaque component and T0x10 data cannot change reconstructed SVG", () => {
   const displayProperties = [
@@ -439,6 +490,14 @@ test("missing, duplicate, and degenerate geometry uses generic placement boxes",
         position: { x: 100, y: 100 },
       }),
       makeComponent({
+        packageName: "C.Normal",
+        points: [
+          { x: 125, y: 100 },
+          { x: 126, y: 100 },
+        ],
+        position: { x: 125, y: 100 },
+      }),
+      makeComponent({
         packageName: "TL082.Normal",
         points: [
           { x: 150, y: 0 },
@@ -452,13 +511,14 @@ test("missing, duplicate, and degenerate geometry uses generic placement boxes",
     ]),
   )
 
-  expect(svg.match(/data-symbol-family="generic"/g)).toHaveLength(4)
+  expect(svg.match(/data-symbol-family="generic"/g)).toHaveLength(5)
   expect(
     svg.match(/data-fallback-reason="invalid-t0x10-geometry"/g),
-  ).toHaveLength(4)
+  ).toHaveLength(5)
   expect(svg).not.toContain('data-symbol-family="resistor"')
   expect(svg).not.toContain('data-symbol-family="dc-source"')
   expect(svg).not.toContain('data-symbol-family="sine-source"')
+  expect(svg).not.toContain('data-symbol-family="capacitor"')
   expect(svg).not.toContain('data-symbol-family="op-amp"')
 })
 
@@ -497,6 +557,31 @@ test("BiasValue text remains as a de-emphasized exterior diagnostic", () => {
     'fill="#6b7280" fill-opacity="0.72" stroke="none" font-family="Arial, sans-serif" font-size="7"',
   )
   expect(svg).toContain(">retained color-28 text</text>")
+})
+
+test("circular-source BiasValue diagnostics sit beside the symbol", () => {
+  const svg = serializePage(
+    makePage([
+      makeComponent({
+        packageName: "VDC.Normal",
+        points: sourcePoints,
+        position: { x: 100, y: 0 },
+        reference: "V1",
+        displayProperties: [
+          makeDisplayProperty({
+            propertyName: "BiasValue Power",
+            text: "-342.4mW",
+            offset: { x: 19, y: 8 },
+          }),
+        ],
+      }),
+    ]),
+  )
+
+  expect(svg).toContain(
+    'data-source-position-x="119" data-source-position-y="8" x="120" y="3.5"',
+  )
+  expect(svg).toContain(">-342.4mW</text>")
 })
 
 test("nearest-endpoint ground placement is visual-only and creates no API connectivity", () => {
