@@ -302,6 +302,9 @@ test("reconstructs only the four exact package-name allowlist families", () => {
     'data-polarity-inference="diagram-convention-upper-minus-lower-plus"',
   )
   expect(svg).toContain(
+    'text-anchor="middle" dominant-baseline="middle" fill="#0057ff"',
+  )
+  expect(svg).toContain(
     'data-text-format-inference="vsin-parameter-name-value"',
   )
   expect(svg).toContain(">FREQ = 1k</text>")
@@ -485,7 +488,7 @@ test("BiasValue text remains as a de-emphasized exterior diagnostic", () => {
   )
 
   expect(svg).toContain(
-    'data-property="Part Reference" data-text-source="component-reference" data-placement-inference="component-relative-top-to-baseline" x="12" y="23"',
+    'data-property="Part Reference" data-text-source="component-reference" data-placement-inference="component-relative-top-to-baseline" x="12" y="31"',
   )
   expect(svg).toContain(
     'data-property="BiasValue Power" data-text-source="display-property" data-placement-inference="component-symbol-exterior-diagnostic" data-visibility-inference="source-visibility-unresolved-diagnostic" data-source-position-x="14" data-source-position-y="25" x="28" y="16"',

@@ -24,7 +24,7 @@ const wireColor = "#d00078"
 const netLabelColor = "#ef1d29"
 const textColor = "#101010"
 const displayPropertyFontSize = 10
-const displayPropertyBaselineOffset = 0
+const displayPropertyBaselineOffset = displayPropertyFontSize * 0.8
 const biasDiagnosticFontSize = 7
 const groundEndpointSnapThreshold = 10
 const groundSymbolNameAllowlist = new Set(["0", "GND", "GROUND", "COMMON"])
@@ -314,8 +314,8 @@ function renderDcSource(
     `        <line x1="${formatNumber(first.x)}" y1="${formatNumber(first.y)}" x2="${formatNumber(firstCirclePoint.x)}" y2="${formatNumber(firstCirclePoint.y)}"/>`,
     `        <circle cx="${formatNumber(center.x)}" cy="${formatNumber(center.y)}" r="${formatNumber(radius)}"/>`,
     `        <line x1="${formatNumber(secondCirclePoint.x)}" y1="${formatNumber(secondCirclePoint.y)}" x2="${formatNumber(second.x)}" y2="${formatNumber(second.y)}"/>`,
-    `        <text x="${formatNumber(plusPosition.x)}" y="${formatNumber(plusPosition.y)}" fill="${symbolColor}" stroke="none" font-family="Arial, sans-serif" font-size="10">+</text>`,
-    `        <text x="${formatNumber(minusPosition.x)}" y="${formatNumber(minusPosition.y)}" fill="${symbolColor}" stroke="none" font-family="Arial, sans-serif" font-size="10">−</text>`,
+    `        <text x="${formatNumber(plusPosition.x)}" y="${formatNumber(plusPosition.y)}" text-anchor="middle" dominant-baseline="middle" fill="${symbolColor}" stroke="none" font-family="Arial, sans-serif" font-size="10">+</text>`,
+    `        <text x="${formatNumber(minusPosition.x)}" y="${formatNumber(minusPosition.y)}" text-anchor="middle" dominant-baseline="middle" fill="${symbolColor}" stroke="none" font-family="Arial, sans-serif" font-size="10">−</text>`,
     "      </g>",
   ]
 }
@@ -441,8 +441,8 @@ function renderOpAmp(geometry: OpAmpGeometry): string[] {
     `        <line x1="${formatNumber(geometry.upperMiddlePoint.x)}" y1="${formatNumber(geometry.upperMiddlePoint.y)}" x2="${formatNumber(upperMiddleTarget.x)}" y2="${formatNumber(upperMiddleTarget.y)}"/>`,
     `        <line x1="${formatNumber(geometry.lowerMiddlePoint.x)}" y1="${formatNumber(geometry.lowerMiddlePoint.y)}" x2="${formatNumber(lowerMiddleTarget.x)}" y2="${formatNumber(lowerMiddleTarget.y)}"/>`,
     '        <g data-polarity-inference="diagram-convention-upper-minus-lower-plus">',
-    `          <text x="${formatNumber(glyphX)}" y="${formatNumber(geometry.upperLeftPoint.y)}" fill="${symbolColor}" stroke="none" font-family="Arial, sans-serif" font-size="10">−</text>`,
-    `          <text x="${formatNumber(glyphX)}" y="${formatNumber(geometry.lowerLeftPoint.y)}" fill="${symbolColor}" stroke="none" font-family="Arial, sans-serif" font-size="10">+</text>`,
+    `          <text x="${formatNumber(glyphX)}" y="${formatNumber(geometry.upperLeftPoint.y)}" text-anchor="middle" dominant-baseline="middle" fill="${symbolColor}" stroke="none" font-family="Arial, sans-serif" font-size="10">−</text>`,
+    `          <text x="${formatNumber(glyphX)}" y="${formatNumber(geometry.lowerLeftPoint.y)}" text-anchor="middle" dominant-baseline="middle" fill="${symbolColor}" stroke="none" font-family="Arial, sans-serif" font-size="10">+</text>`,
     "        </g>",
     "      </g>",
   ]
