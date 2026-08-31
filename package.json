@@ -1,0 +1,56 @@
+{
+  "name": "orcadts",
+  "version": "0.0.1",
+  "description": "Inspect partial OrCAD Capture schematic geometry and preserve opaque files in TypeScript",
+  "type": "module",
+  "module": "lib/index.ts",
+  "types": "lib/index.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.ts",
+      "import": "./lib/index.ts",
+      "default": "./lib/index.ts"
+    }
+  },
+  "sideEffects": false,
+  "engines": {
+    "bun": ">=1.2.0"
+  },
+  "files": [
+    "lib",
+    "docs",
+    "references/README.md",
+    "references/licenses"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tscircuit/orcadts"
+  },
+  "license": "MIT",
+  "keywords": [
+    "cadence",
+    "eda",
+    "orcad",
+    "schematic",
+    "svg",
+    "tscircuit",
+    "typescript"
+  ],
+  "scripts": {
+    "check": "bun run format:check && bun run lint && bun run license:check && bun run typecheck && bun run test",
+    "download-references": "bun run scripts/download-references.ts",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "license:check": "bun run scripts/check-license-policy.ts",
+    "lint": "biome lint .",
+    "test": "bun test",
+    "test:svg": "bun test tests/svg",
+    "test:update-svg": "BUN_UPDATE_SNAPSHOTS=1 bun test tests/svg",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.11",
+    "@types/bun": "1.4.0",
+    "typescript": "5.9.3"
+  }
+}

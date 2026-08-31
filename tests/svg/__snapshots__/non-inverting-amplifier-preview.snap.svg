@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="228 65 533 320" role="img" aria-label="MIT OrCAD non-inverting amplifier Preview" class="orcad-schematic-preview" data-renderer="orcadts" data-support="partial-preview" data-render-mode="heuristic" data-geometry-source="t0x10-record-positions" data-symbol-inference="package-name-allowlist">
+  <title>MIT OrCAD non-inverting amplifier Preview</title>
+  <desc>Partial visual reconstruction from decoded OrCAD Capture page geometry. Symbol library graphics, placement transforms, hierarchy, and the undecoded page tail are not faithfully reproduced.</desc>
+  <metadata data-format="orcad-capture-dsn-cfb-preview" data-page-stream="Views/SCHEMATIC1/Pages/PAGE1" data-limitations="8"/>
+  <defs>
+    <pattern id="orcad-preview-grid" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="0.45" fill="#c8ccd4"/></pattern>
+  </defs>
+  <rect x="228" y="65" width="533" height="320" fill="#ffffff"/>
+  <rect x="228" y="65" width="533" height="320" fill="url(#orcad-preview-grid)" data-layer="grid"/>
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <g data-layer="wires" fill="none">
+      <line data-wire-source-order="0" data-kind="wire" x1="630" y1="205" x2="630" y2="216" stroke="#d00078" stroke-width="1.25"/>
+      <line data-wire-source-order="1" data-kind="wire" x1="630" y1="275" x2="630" y2="300" stroke="#d00078" stroke-width="1.25"/>
+      <line data-wire-source-order="2" data-kind="wire" x1="630" y1="165" x2="630" y2="145" stroke="#d00078" stroke-width="1.25"/>
+      <line data-wire-source-order="3" data-kind="wire" x1="630" y1="216" x2="704" y2="216" stroke="#d00078" stroke-width="1.25"/>
+      <line data-wire-source-order="4" data-kind="wire" x1="630" y1="216" x2="630" y2="235" stroke="#d00078" stroke-width="1.25"/>
+      <line data-wire-source-order="5" data-kind="wire" x1="704" y1="216" x2="704" y2="236" stroke="#d00078" stroke-width="1.25"/>
+      <line data-wire-source-order="6" data-kind="wire" x1="395" y1="205" x2="380" y2="205" stroke="#d00078" stroke-width="1.25"/>
+      <line data-wire-source-order="7" data-kind="wire" x1="380" y1="135" x2="380" y2="205" stroke="#d00078" stroke-width="1.25"/>
+      <line data-wire-source-order="8" data-kind="wire" x1="495" y1="135" x2="495" y2="225" stroke="#d00078" stroke-width="1.25"/>
+      <line data-wire-source-order="9" data-kind="wire" x1="495" y1="225" x2="475" y2="225" stroke="#d00078" stroke-width="1.25"/>
+      <line data-wire-source-order="10" data-kind="wire" x1="415" y1="135" x2="380" y2="135" stroke="#d00078" stroke-width="1.25"/>
+      <line data-wire-source-order="11" data-kind="wire" x1="455" y1="135" x2="495" y2="135" stroke="#d00078" stroke-width="1.25"/>
+      <line data-wire-source-order="12" data-kind="wire" x1="435" y1="195" x2="435" y2="180" stroke="#d00078" stroke-width="1.25"/>
+      <line data-wire-source-order="13" data-kind="wire" x1="435" y1="255" x2="435" y2="270" stroke="#d00078" stroke-width="1.25"/>
+      <line data-wire-source-order="14" data-kind="wire" x1="360" y1="205" x2="380" y2="205" stroke="#d00078" stroke-width="1.25"/>
+      <line data-wire-source-order="15" data-kind="wire" x1="320" y1="205" x2="285" y2="205" stroke="#d00078" stroke-width="1.25"/>
+      <line data-wire-source-order="16" data-kind="wire" x1="285" y1="205" x2="285" y2="220" stroke="#d00078" stroke-width="1.25"/>
+      <line data-wire-source-order="17" data-kind="wire" x1="355" y1="255" x2="355" y2="245" stroke="#d00078" stroke-width="1.25"/>
+      <line data-wire-source-order="18" data-kind="wire" x1="355" y1="245" x2="395" y2="245" stroke="#d00078" stroke-width="1.25"/>
+      <line data-wire-source-order="19" data-kind="wire" x1="355" y1="295" x2="355" y2="315" stroke="#d00078" stroke-width="1.25"/>
+    </g>
+    <g data-layer="junctions" fill="none">
+      <circle data-junction-inference="true" cx="380" cy="205" r="2.25" fill="#d00078" stroke="none"/>
+      <circle data-junction-inference="true" cx="630" cy="216" r="2.25" fill="#d00078" stroke="none"/>
+    </g>
+    <g data-layer="component" data-database-id="409" data-reference="R2" data-package-name="R.Normal" fill="none" stroke="#0057ff" stroke-width="1.2">
+      <g data-symbol-family="resistor" data-render-mode="heuristic" data-geometry-source="t0x10-record-positions" data-symbol-inference="package-name-allowlist">
+        <path d="M 320 205 L 328 205 L 331 208.5 L 334 201.5 L 337 208.5 L 340 201.5 L 343 208.5 L 346 201.5 L 349 208.5 L 352 205 L 360 205"/>
+      </g>
+      <text data-property="Part Reference" data-text-source="component-reference" data-placement-inference="component-relative-top-to-baseline" x="310" y="190" fill="#0057ff" stroke="none" font-family="Arial, sans-serif" font-size="10" transform="rotate(0 310 190)">R2</text>
+      <text data-property="BiasValue Power" data-text-source="display-property" data-placement-inference="component-symbol-exterior-diagnostic" data-visibility-inference="source-visibility-unresolved-diagnostic" data-source-position-x="310" data-source-position-y="200" x="368" y="221" fill="#6b7280" fill-opacity="0.72" stroke="none" font-family="Arial, sans-serif" font-size="7">199.7fW</text>
+    </g>
+    <g data-layer="component" data-database-id="108" data-reference="V2" data-package-name="VDC.Normal" fill="none" stroke="#0057ff" stroke-width="1.2">
+      <g data-symbol-family="dc-source" data-render-mode="heuristic" data-geometry-source="t0x10-record-positions" data-symbol-inference="package-name-allowlist">
+        <line x1="630" y1="235" x2="630" y2="243"/>
+        <circle cx="630" cy="255" r="12"/>
+        <line x1="630" y1="267" x2="630" y2="275"/>
+        <text x="630" y="250.44" fill="#0057ff" stroke="none" font-family="Arial, sans-serif" font-size="10">+</text>
+        <text x="630" y="259.56" fill="#0057ff" stroke="none" font-family="Arial, sans-serif" font-size="10">−</text>
+      </g>
+      <text data-property="Part Reference" data-text-source="component-reference" data-placement-inference="component-relative-top-to-baseline" x="639" y="233" fill="#0057ff" stroke="none" font-family="Arial, sans-serif" font-size="10" transform="rotate(0 639 233)">V2</text>
+      <text data-property="DC" data-text-source="display-property" data-placement-inference="component-relative-top-to-baseline" x="600" y="245" fill="#0057ff" stroke="none" font-family="Arial, sans-serif" font-size="10" transform="rotate(0 600 245)">15</text>
+      <text data-property="BiasValue Power" data-text-source="display-property" data-placement-inference="component-symbol-exterior-diagnostic" data-visibility-inference="source-visibility-unresolved-diagnostic" data-source-position-x="639" data-source-position-y="243" x="638" y="291" fill="#6b7280" fill-opacity="0.72" stroke="none" font-family="Arial, sans-serif" font-size="7">-342.4mW</text>
+    </g>
+    <g data-layer="component" data-database-id="92" data-reference="V1" data-package-name="VDC.Normal" fill="none" stroke="#0057ff" stroke-width="1.2">
+      <g data-symbol-family="dc-source" data-render-mode="heuristic" data-geometry-source="t0x10-record-positions" data-symbol-inference="package-name-allowlist">
+        <line x1="630" y1="165" x2="630" y2="173"/>
+        <circle cx="630" cy="185" r="12"/>
+        <line x1="630" y1="197" x2="630" y2="205"/>
+        <text x="630" y="180.44" fill="#0057ff" stroke="none" font-family="Arial, sans-serif" font-size="10">+</text>
+        <text x="630" y="189.56" fill="#0057ff" stroke="none" font-family="Arial, sans-serif" font-size="10">−</text>
+      </g>
+      <text data-property="Part Reference" data-text-source="component-reference" data-placement-inference="component-relative-top-to-baseline" x="639" y="163" fill="#0057ff" stroke="none" font-family="Arial, sans-serif" font-size="10" transform="rotate(0 639 163)">V1</text>
+      <text data-property="DC" data-text-source="display-property" data-placement-inference="component-relative-top-to-baseline" x="600" y="175" fill="#0057ff" stroke="none" font-family="Arial, sans-serif" font-size="10" transform="rotate(0 600 175)">15</text>
+      <text data-property="BiasValue Power" data-text-source="display-property" data-placement-inference="component-symbol-exterior-diagnostic" data-visibility-inference="source-visibility-unresolved-diagnostic" data-source-position-x="639" data-source-position-y="173" x="638" y="221" fill="#6b7280" fill-opacity="0.72" stroke="none" font-family="Arial, sans-serif" font-size="7">-342.4mW</text>
+    </g>
+    <g data-layer="component" data-database-id="314" data-reference="R1" data-package-name="R.Normal" fill="none" stroke="#0057ff" stroke-width="1.2">
+      <g data-symbol-family="resistor" data-render-mode="heuristic" data-geometry-source="t0x10-record-positions" data-symbol-inference="package-name-allowlist">
+        <path d="M 415 135 L 423 135 L 426 138.5 L 429 131.5 L 432 138.5 L 435 131.5 L 438 138.5 L 441 131.5 L 444 138.5 L 447 135 L 455 135"/>
+      </g>
+      <text data-property="Part Reference" data-text-source="component-reference" data-placement-inference="component-relative-top-to-baseline" x="405" y="120" fill="#0057ff" stroke="none" font-family="Arial, sans-serif" font-size="10" transform="rotate(0 405 120)">R1</text>
+      <text data-property="BiasValue Power" data-text-source="display-property" data-placement-inference="component-symbol-exterior-diagnostic" data-visibility-inference="source-visibility-unresolved-diagnostic" data-source-position-x="405" data-source-position-y="130" x="463" y="151" fill="#6b7280" fill-opacity="0.72" stroke="none" font-family="Arial, sans-serif" font-size="7">205.8fW</text>
+    </g>
+    <g data-layer="component" data-database-id="485" data-reference="V3" data-package-name="VSIN.Normal" fill="none" stroke="#0057ff" stroke-width="1.2">
+      <g data-symbol-family="sine-source" data-render-mode="heuristic" data-geometry-source="t0x10-record-positions" data-symbol-inference="package-name-allowlist">
+        <line x1="355" y1="255" x2="355" y2="263"/>
+        <circle cx="355" cy="275" r="12"/>
+        <path d="M 362.2 275 L 361.3 276.1021 L 360.4 277.0365 L 359.5 277.6608 L 358.6 277.88 L 357.7 277.6608 L 356.8 277.0365 L 355.9 276.1021 L 355 275 L 354.1 273.8979 L 353.2 272.9635 L 352.3 272.3392 L 351.4 272.12 L 350.5 272.3392 L 349.6 272.9635 L 348.7 273.8979 L 347.8 275"/>
+        <line x1="355" y1="287" x2="355" y2="295"/>
+      </g>
+      <text data-property="Part Reference" data-text-source="component-reference" data-placement-inference="component-relative-top-to-baseline" x="360" y="256" fill="#0057ff" stroke="none" font-family="Arial, sans-serif" font-size="10" transform="rotate(0 360 256)">V3</text>
+      <text data-property="FREQ" data-text-source="display-property" data-placement-inference="component-relative-top-to-baseline" data-text-format-inference="vsin-parameter-name-value" x="295" y="285" fill="#0057ff" stroke="none" font-family="Arial, sans-serif" font-size="10" transform="rotate(0 295 285)">FREQ = 1k</text>
+      <text data-property="VAMPL" data-text-source="display-property" data-placement-inference="component-relative-top-to-baseline" data-text-format-inference="vsin-parameter-name-value" x="295" y="275" fill="#0057ff" stroke="none" font-family="Arial, sans-serif" font-size="10" transform="rotate(0 295 275)">VAMPL = 5</text>
+      <text data-property="VOFF" data-text-source="display-property" data-placement-inference="component-relative-top-to-baseline" data-text-format-inference="vsin-parameter-name-value" x="295" y="265" fill="#0057ff" stroke="none" font-family="Arial, sans-serif" font-size="10" transform="rotate(0 295 265)">VOFF = 0</text>
+      <text data-property="AC" data-text-source="display-property" data-placement-inference="component-relative-top-to-baseline" data-text-format-inference="vsin-parameter-name-value" x="305" y="295" fill="#0057ff" stroke="none" font-family="Arial, sans-serif" font-size="10" transform="rotate(0 305 295)">AC = 0</text>
+      <text data-property="BiasValue Power" data-text-source="display-property" data-placement-inference="component-symbol-exterior-diagnostic" data-visibility-inference="source-visibility-unresolved-diagnostic" data-source-position-x="360" data-source-position-y="266" x="363" y="311" fill="#6b7280" fill-opacity="0.72" stroke="none" font-family="Arial, sans-serif" font-size="7">0W</text>
+    </g>
+    <g data-layer="component" data-database-id="48" data-reference="U1" data-package-name="TL082.Normal" fill="none" stroke="#0057ff" stroke-width="1.2">
+      <g data-symbol-family="op-amp" data-render-mode="heuristic" data-geometry-source="t0x10-record-positions" data-symbol-inference="package-name-allowlist">
+        <path d="M 405 195 L 405 255 L 475 225 Z"/>
+        <line x1="395" y1="205" x2="405" y2="205"/>
+        <line x1="395" y1="245" x2="405" y2="245"/>
+        <line x1="435" y1="195" x2="435" y2="207.8571"/>
+        <line x1="435" y1="255" x2="435" y2="242.1429"/>
+        <g data-polarity-inference="diagram-convention-upper-minus-lower-plus">
+          <text x="420.4" y="205" fill="#0057ff" stroke="none" font-family="Arial, sans-serif" font-size="10">−</text>
+          <text x="420.4" y="245" fill="#0057ff" stroke="none" font-family="Arial, sans-serif" font-size="10">+</text>
+        </g>
+      </g>
+      <text data-property="Package Name" data-text-source="package-name" data-text-format-inference="exact-package-base-label" data-placement-inference="op-amp-exterior-label" x="405" y="187" fill="#0057ff" stroke="none" font-family="Arial, sans-serif" font-size="9">TL082</text>
+      <text data-property="Part Reference" data-text-source="component-reference" data-placement-inference="component-relative-top-to-baseline" x="409" y="253" fill="#0057ff" stroke="none" font-family="Arial, sans-serif" font-size="10" transform="rotate(0 409 253)">U1</text>
+      <text data-property="BiasValue Power" data-text-source="display-property" data-placement-inference="component-symbol-exterior-diagnostic" data-visibility-inference="source-visibility-unresolved-diagnostic" data-source-position-x="409" data-source-position-y="263" x="483" y="271" fill="#6b7280" fill-opacity="0.72" stroke="none" font-family="Arial, sans-serif" font-size="7">684.8mW</text>
+    </g>
+    <g data-layer="net-symbol" data-kind="global" data-database-id="159" data-render-mode="heuristic" data-geometry-source="nearest-wire-endpoint" data-symbol-inference="global-name-allowlist" data-attachment-inference="nearest-wire-endpoint" data-decoded-position-x="694" data-decoded-position-y="236" stroke="#ef1d29" fill="none" stroke-width="1.2">
+      <line x1="692" y1="236" x2="716" y2="236"/>
+      <line x1="696" y1="240" x2="712" y2="240"/>
+      <line x1="700" y1="244" x2="708" y2="244"/>
+      <text x="704" y="258" text-anchor="middle" fill="#101010" stroke="none" font-family="Arial, sans-serif" font-size="10">0</text>
+    </g>
+    <g data-layer="net-symbol" data-kind="global" data-database-id="439" data-render-mode="heuristic" data-geometry-source="nearest-wire-endpoint" data-symbol-inference="global-name-allowlist" data-attachment-inference="nearest-wire-endpoint" data-decoded-position-x="275" data-decoded-position-y="220" stroke="#ef1d29" fill="none" stroke-width="1.2">
+      <line x1="273" y1="220" x2="297" y2="220"/>
+      <line x1="277" y1="224" x2="293" y2="224"/>
+      <line x1="281" y1="228" x2="289" y2="228"/>
+      <text x="285" y="242" text-anchor="middle" fill="#101010" stroke="none" font-family="Arial, sans-serif" font-size="10">0</text>
+    </g>
+    <g data-layer="net-symbol" data-kind="global" data-database-id="514" data-render-mode="heuristic" data-geometry-source="nearest-wire-endpoint" data-symbol-inference="global-name-allowlist" data-attachment-inference="nearest-wire-endpoint" data-decoded-position-x="345" data-decoded-position-y="315" stroke="#ef1d29" fill="none" stroke-width="1.2">
+      <line x1="343" y1="315" x2="367" y2="315"/>
+      <line x1="347" y1="319" x2="363" y2="319"/>
+      <line x1="351" y1="323" x2="359" y2="323"/>
+      <text x="355" y="337" text-anchor="middle" fill="#101010" stroke="none" font-family="Arial, sans-serif" font-size="10">0</text>
+    </g>
+    <g data-layer="net-aliases">
+      <text data-wire-source-order="1" x="634" y="294" fill="#ef1d29" stroke="none" font-family="Arial, sans-serif" font-size="10">VEE</text>
+      <text data-wire-source-order="2" x="634" y="152" fill="#ef1d29" stroke="none" font-family="Arial, sans-serif" font-size="10">VCC</text>
+      <text data-wire-source-order="12" x="439" y="186" fill="#ef1d29" stroke="none" font-family="Arial, sans-serif" font-size="10">VEE</text>
+      <text data-wire-source-order="13" x="439" y="266" fill="#ef1d29" stroke="none" font-family="Arial, sans-serif" font-size="10">VCC</text>
+    </g>
+  </g>
+</svg>
