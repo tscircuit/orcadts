@@ -13,9 +13,10 @@ Preview parser and deterministic renderer. That test establishes only the
 bounded capabilities recorded in `docs/preview-svg.md`; it does not establish
 complete semantic or native-write support.
 
-## Open OrCAD Capture sample
+## Open OrCAD Capture samples
 
-The downloader retrieves the **Non-inverting Amplifier** project from
+The downloader retrieves the **Non-inverting Amplifier** and **Integrator**
+projects from
 [`Devangvk/Op-Amp-Circuits`](https://github.com/Devangvk/Op-Amp-Circuits),
 pinned to commit
 [`d2c2376c17dd503341feb1e816d88bdfa5dc7625`](https://github.com/Devangvk/Op-Amp-Circuits/commit/d2c2376c17dd503341feb1e816d88bdfa5dc7625)
@@ -30,7 +31,7 @@ redistributing substantial portions of the fixture or a derived visual. A
 verbatim copy is retained at
 [`licenses/Devangvk-Op-Amp-Circuits-MIT.txt`](licenses/Devangvk-Op-Amp-Circuits-MIT.txt).
 
-All outputs are written below
+The Non-inverting Amplifier outputs are written below
 `references/files/op-amp-circuits/non-inverting-amplifier/`:
 
 | Local file | Upstream member | Bytes | SHA-256 | Intended use |
@@ -38,6 +39,15 @@ All outputs are written below
 | `NONINVAMP.DSN` | [`Op Amp Circuits/Non-inverting Amplifier/NONINVAMP.DSN`](https://github.com/Devangvk/Op-Amp-Circuits/blob/d2c2376c17dd503341feb1e816d88bdfa5dc7625/Op%20Amp%20Circuits/Non-inverting%20Amplifier/NONINVAMP.DSN) | 24,064 | `d25e4388e051da1418733ef837badb4b8ad98f0b407225df84b0379a9362b6a8` | Preview parser and SVG snapshot fixture |
 | `noninvSch.PNG` | [`Op Amp Circuits/Non-inverting Amplifier/noninvSch.PNG`](https://github.com/Devangvk/Op-Amp-Circuits/blob/d2c2376c17dd503341feb1e816d88bdfa5dc7625/Op%20Amp%20Circuits/Non-inverting%20Amplifier/noninvSch.PNG) | 17,836 | `f30b2c937846f7d96ad0ade0a48f9533bffab3890e1a9cb778c3a7a0a848560e` | Publisher-authored visual oracle for human review |
 | `noninvamp.opj` | [`Op Amp Circuits/Non-inverting Amplifier/noninvamp.opj`](https://github.com/Devangvk/Op-Amp-Circuits/blob/d2c2376c17dd503341feb1e816d88bdfa5dc7625/Op%20Amp%20Circuits/Non-inverting%20Amplifier/noninvamp.opj) | 2,023 | `516f4eeb18a54124c2a4c979f457ec9d507ca3b3ba59e5bbdd12babf871bb416` | Capture project context |
+
+The Integrator outputs are written below
+`references/files/op-amp-circuits/integrator/`:
+
+| Local file | Upstream member | Bytes | SHA-256 | Intended use |
+| --- | --- | ---: | --- | --- |
+| `INTEGRATOR.DSN` | [`Op Amp Circuits/Integrator/INTEGRATOR.DSN`](https://github.com/Devangvk/Op-Amp-Circuits/blob/d2c2376c17dd503341feb1e816d88bdfa5dc7625/Op%20Amp%20Circuits/Integrator/INTEGRATOR.DSN) | 28,672 | `654fde997ac84a3acffdbe6cb78fd905a32bffe8b97f463744df39abfad05bf0` | Preview parser and SVG snapshot fixture |
+| `intSch.PNG` | [`Op Amp Circuits/Integrator/intSch.PNG`](https://github.com/Devangvk/Op-Amp-Circuits/blob/d2c2376c17dd503341feb1e816d88bdfa5dc7625/Op%20Amp%20Circuits/Integrator/intSch.PNG) | 22,651 | `c42313c2c3da29c6ea2e47f8c4f5278712158630c4294018ff33c459c9744080` | Publisher-authored visual oracle for human review |
+| `Integrator.opj` | [`Op Amp Circuits/Integrator/Integrator.opj`](https://github.com/Devangvk/Op-Amp-Circuits/blob/d2c2376c17dd503341feb1e816d88bdfa5dc7625/Op%20Amp%20Circuits/Integrator/Integrator.opj) | 2,418 | `9fbdd1e0e2cd763a6221c57d6c349c2a4932694211e53bfd0eb84d255c951e67` | Capture project context; SPB 17.2 library paths are a provenance hint, not definitive save-version metadata |
 
 The direct artifact URLs include the immutable commit and percent-encoded source
 path in `scripts/download-references.ts`. The script validates the expected byte

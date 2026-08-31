@@ -92,7 +92,8 @@ positions and opaque fields are preserved without claiming pin semantics. All
 extend `OrcadNode` and implement `getChildren()`.
 
 This first renderer preserves decoded source placement and draws deterministic
-generic symbols. It does not decode the original library graphics, placement
+heuristic symbols for a small exact package-name allowlist, with a generic
+fallback. It does not decode the original library graphics, placement
 transforms, page-tail graphics, or hierarchy, and it is not a Cadence-quality
 rendering. See the [Preview and visual-test guide](docs/preview-svg.md).
 
