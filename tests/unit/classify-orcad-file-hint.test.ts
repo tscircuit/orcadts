@@ -64,4 +64,50 @@ describe("classifyOrcadFileHint", () => {
     expect(Object.isFrozen(unknownHint)).toBe(true)
     expect(Object.isFrozen(unknownHint.ambiguities)).toBe(true)
   })
+
+  test("classifies by the final extension of a multi-dot filename", () => {
+    expect(classifyOrcadFileHint({ fileName: "my.board.dsn" })).toEqual({
+      format: "dsn",
+      family: "orcad_capture",
+      fileKind: "schematic",
+      extension: ".dsn",
+      confidence: "extension_only",
+      ambiguities: ["specctra_dsn"],
+    })
+
+    expect(classifyOrcadFileHint({ fileName: "archive.OPJ.bak" })).toEqual({
+      format: "unknown",
+      family: "unknown",
+      fileKind: "unknown",
+      extension: ".bak",
+      confidence: "none",
+      ambiguities: [],
+    })
+  })
+
+  test("handles POSIX-style paths", () => {
+    expect(
+      classifyOrcadFileHint({ fileName: "/home/user/design.opj" }),
+    ).toEqual({
+      format: "opj",
+      family: "orcad_capture",
+      fileKind: "project",
+      extension: ".opj",
+      confidence: "extension_only",
+      ambiguities: [],
+    })
+  })
+
+  test("reports no extension for names lacking a usable one", () => {
+    for (const fileName of ["README", "board.", ""]) {
+      expect(classifyOrcadFileHint({ fileName })).toEqual({
+        format: "unknown",
+        family: "unknown",
+        fileKind: "unknown",
+        extension: null,
+        confidence: "none",
+        ambiguities: [],
+      })
+    }
+  })
 })
